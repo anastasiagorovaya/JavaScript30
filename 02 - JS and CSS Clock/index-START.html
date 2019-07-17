@@ -9,16 +9,16 @@
 
     <div class="clock">
       <div class="clock-face">
-        <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
-        <div class="hand second-hand"></div>
+        <div class="hand hours-hand"></div>
+        <div class="hand mins-hand"></div>
+        <div class="hand seconds-hand"></div>
       </div>
     </div>
 
 
   <style>
     html {
-      background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=5);
+      background: url(https://cdn.pixabay.com/photo/2016/07/08/15/57/mondrian-1504681_960_720.png); 
       background-size: cover;
       font-family: 'helvetica neue';
       text-align: center;
@@ -38,8 +38,8 @@
       width: 30rem;
       height: 30rem;
       border: 20px solid white;
-      border-radius: 50%;
-      margin: 50px auto;
+
+      margin: 60px auto;
       position: relative;
       padding: 2rem;
       box-shadow:
@@ -62,8 +62,11 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%;
+      transform: rotate(90deg); /*sets the initial hand position to 12*/
+      transition: all .05s; /*adds smooth movement of all hands*/
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1)
     }
-
   </style>
 
   <script>
