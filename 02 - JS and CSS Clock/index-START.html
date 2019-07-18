@@ -10,10 +10,11 @@
     <div class="clock">
       <div class="clock-face">
         <div class="hand hours-hand"></div>
-        <div class="hand mins-hand"></div>
+        <div class="hand minutes-hand"></div>
         <div class="hand seconds-hand"></div>
       </div>
     </div>
+    <audio autoplay src="Tick.mp3"></audio>
 
 
   <style>
@@ -67,10 +68,29 @@
       transition: all .05s; /*adds smooth movement of all hands*/
       transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1)
     }
-  </style>
 
+
+  </style>
   <script>
 
+    function getDegrees(){
+      const time = new Date();
+
+      document.querySelector('audio').play();
+
+      const secondsDegree = ((time.getSeconds() / 60) * 360) + 90;
+      const minutesDegree = ((time.getMinutes() / 60)) * 360 + 90;
+      const hoursDegree = ((time.getHours() / 12)) * 360 + 90;
+
+      console.log(time.getSeconds() +" seconds " + time.getMinutes() + " minutes " + time.getHours() +" hours")
+
+      document.querySelector('.seconds-hand').style.transform = `rotate(${secondsDegree}deg)`
+      document.querySelector('.minutes-hand').style.transform = `rotate(${minutesDegree}deg)`
+      document.querySelector('.hours-hand').style.transform = `rotate(${hoursDegree}deg)`
+
+    }
+
+    setInterval(getDegrees, 1000)
 
   </script>
 </body>
