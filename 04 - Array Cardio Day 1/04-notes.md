@@ -26,3 +26,21 @@ const newArray = origArray.filter(function(origArrayElem){
 └─────────┴───────────┘
 
 ## Fat Arrow => works as return! 
+
+## array.map() does something with each element of the array, you specify what exactly in the parenthesis. 
+```js
+//add 5 to each element
+var nums = [1, 2, 3, 4, 5]
+var addFive = nums.map(num => num + 5)
+
+> addFive
+[ 6, 7, 8, 9, 10 ]
+```
+
+## array.sort() -> iterates through the array, but looks at two elements at a time and assigns a sort order to them. Returns -1 and 1. 
+
+var nums = [0, 5, 7, 3, 2]
+const orderedNums = nums.sort((a, b) => a > b ?  1 : -1)
+> orderedNums
+[ 0, 2, 3, 5, 7 ]
+
