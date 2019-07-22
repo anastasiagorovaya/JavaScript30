@@ -44,3 +44,26 @@ const orderedNums = nums.sort((a, b) => a > b ?  1 : -1)
 > orderedNums
 [ 0, 2, 3, 5, 7 ]
 
+## array.reduce()
+
+```js {
+    // Array.prototype.reduce()
+    // 4. How many years did all the inventors live?
+
+    const totalYears = inventors.reduce((total, inventor) 
+    => {return total + (inventor.passed - inventor.year);}, 0)
+}
+```
+*look into this functions syntax!!!*
+
+
+##Reduce! 
+
+```js
+array.reduce((resultingObject, eachElemOfArray) => {
+    return resultingObject;
+},{}) // () -> creates an empty object
+//in reduce the resulting object can be also an array where you are going to store the modified version of Array. 
+```
+
+## [firstName, lastName] = array.split(",")
