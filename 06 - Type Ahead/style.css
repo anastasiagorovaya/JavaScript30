@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
-  background: #ffc600;
+  background-image: url("https://media.wired.com/photos/5b9c01161e60052cdc38bdef/master/w_2400,c_limit/losangeles-947698310.jpg");
+  background-size: 100%;
   font-family: 'helvetica neue';
   font-size: 20px;
   font-weight: 200;
@@ -67,8 +68,9 @@ input.search {
 
 span.population {
   font-size: 15px;
+  font-style: italic;
 }
 
 .hl {
-  background: #ffc600;
+  background: violet;
 }
