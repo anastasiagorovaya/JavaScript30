@@ -96,6 +96,37 @@
   </div>
 
 <script>
+
+  // function crossItem(){
+  //   console.log('Here!')
+  // }
+
+  const checkBoxes = document.querySelectorAll('input')
+
+  let inputCollector = [];
+
+  function checkIfShift(e){
+    
+    inputCollector.push(e)
+    console.log(inputCollector)
+    if (this.shiftKey){
+      inputCollector.push(e)
+      console.log(inputCollector)
+      console.log("I'm here!")
+    }
+    console.log("I'm over there!")
+  }
+
+
+checkBoxes.forEach(checkBox => checkBox.addEventListener('change', checkIfShift))
+
+
+
+
+
+
+addEventListener('keyup')
+
 </script>
 </body>
 </html>
