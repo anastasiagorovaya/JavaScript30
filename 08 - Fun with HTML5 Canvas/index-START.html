@@ -34,12 +34,12 @@
   ctx.fillStyle = "white" //actually sets the color!
   ctx.fillRect(0, 0, canvWidth, canvHeight)
   vx = 5; //velocity x
-  vy = 0; //velocity y
+  vy = -5; //velocity y
 
   setInterval(function(){
     //erase the canvas in every interation
-    // ctx.fillStyle = "white"  
-    // ctx.fillRect(0, 0, canvWidth, canvHeight)
+    ctx.fillStyle = "white"  
+    ctx.fillRect(0, 0, canvWidth, canvHeight)
     posX += vx;
     posY += vy;
     // vy -= 5;
