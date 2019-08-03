@@ -4,9 +4,9 @@ progress bar
 
 navigate progress
 
-play button:
+✔︎play button: 
 button class="player__button toggle" title="Toggle Play"
-pause button
+✔︎pause button
 
 go forward 25s
 
@@ -22,11 +22,18 @@ speed slider
 const playButton = document.querySelector('.player__button')
 let paused = true;
 
+
+let progressBar = document.querySelector('.progress__filled');
+
+const video = document.querySelector('.player__video')
+
 /*Build out functions*/
+
+
+
 function videoPlaying(e){
     paused = !paused;
    
-   const video = document.querySelector('.player__video')
    if (!paused)
     {   this.innerHTML = "&#10074 &#10074"
         video.play()}
@@ -37,7 +44,27 @@ function videoPlaying(e){
 }
 
 
+//grabbing flex-basis to access percentage of progress__filled
+
+function videoProgress(){
+    
+    let progress = (video.currentTime/video.duration)*100 + '%'; //current time in seconds
+    progressBar.style.flexBasis = progress;
+    console.log(progress)
+       
+}
+
+videoProgress();
 
 /*Hook up the event listeners*/
 
 playButton.addEventListener('click', videoPlaying)
+
+playButton.addEventListener("keyup", event => {
+    if(e.keyCode == 32){
+        (event.target == document.body) ? event.preventDefault() : videoPlaying}
+    })
+
+video.addEventListener('timeupdate', videoProgress)
+
+
