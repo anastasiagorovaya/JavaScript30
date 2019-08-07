@@ -21,11 +21,10 @@ speed slider
 
 const playButton = document.querySelector('.player__button')
 let paused = true;
-
-
 let progressBar = document.querySelector('.progress__filled');
-
 const video = document.querySelector('.player__video')
+const totalProgress = document.querySelector('.progress')
+let totalProgress2 = document.querySelector('.progress')
 
 /*Build out functions*/
 
@@ -49,22 +48,25 @@ function videoPlaying(e){
 function videoProgress(){
     
     let progress = (video.currentTime/video.duration)*100 + '%'; //current time in seconds
-    progressBar.style.flexBasis = progress;
-    console.log(progress)
-       
+    progressBar.style.flexBasis = progress;       
 }
 
 videoProgress();
 
+//function coordToTime relates the current click position to time
+function coordToTime(event){
+    var curryTime = (event.offsetX/totalProgress.offsetWidth) * video.duration;
+    video.currentTime = curryTime;
+    console.log(curryTime + " I am curry time")
+}
+
 /*Hook up the event listeners*/
-
 playButton.addEventListener('click', videoPlaying)
-
-playButton.addEventListener("keyup", event => {
+playButton.addEventListener("keyup", (event) => {
     if(e.keyCode == 32){
         (event.target == document.body) ? event.preventDefault() : videoPlaying}
     })
 
 video.addEventListener('timeupdate', videoProgress)
 
-
+totalProgress.addEventListener('click', coordToTime)
