@@ -77,38 +77,8 @@ video.addEventListener('timeupdate', videoProgress)
 
 totalProgress.addEventListener('click', coordToTime)
 
-// skipForwardButton.addEventListener('click', (event) => {
-    
-//     console.dir(event.target);
-
-// })
-
-// skipButton.forEach(button => { button.addEventListener('click', (event) => {
-//     var amountTime = event.target.dataset.skip;
-//     console.log(video.currentTime);
-//     var currentTime = Math.floor(video.currentTime);
-//     resultTime = Math.floor(video.currentTime + amountTime);
-//     if (resultTime > video.duration) {
-//         video.currentTime = video.duration; 
-//     } else if (resultTime < 0) {
-//         video.currentTime = 0;
-//     } else {
-//         video.currentTime = resultTime;
-//     }
-// })
-// });
-
 skipButton.forEach(button => { button.addEventListener('click', (event) => {
-        var amountTime = event.target.dataset.skip;
-        console.log(video.currentTime);
-        var currentTime = parseFloat(video.currentTime);
-        resultTime = parseFloat(currentTime + amountTime) 
-        if (resultTime > video.duration) {
-            currentTime = video.duration; 
-        } else if (resultTime < 0) {
-            currentTime = 0;
-        } else {
-           currentTime = resultTime;
-        }
+        var skipAmount = parseFloat(event.target.dataset.skip);
+        video.currentTime = video.currentTime + skipAmount
     })
     });
