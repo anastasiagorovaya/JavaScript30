@@ -1,8 +1,8 @@
 /*FUNCTIONALITY:
 
-progress bar 
+✔︎progress bar 
 
-navigate progress
+✔︎navigate progress
 
 ✔︎play button: 
 button class="player__button toggle" title="Toggle Play"
@@ -19,12 +19,18 @@ speed slider
 
 /*Get our Elements*/
 
-const playButton = document.querySelector('.player__button')
+const playButton = document.querySelector('.toggle')
 let paused = true;
 let progressBar = document.querySelector('.progress__filled');
-const video = document.querySelector('.player__video')
+let video = document.querySelector('.player__video')
 const totalProgress = document.querySelector('.progress')
-let totalProgress2 = document.querySelector('.progress')
+
+let skipButton = document.querySelectorAll('button[data-skip]');
+
+// let skipButton = document.querySelector('button');
+
+
+//<button data-skip="25" class="player__button">25s »</button>
 
 /*Build out functions*/
 
@@ -70,3 +76,39 @@ playButton.addEventListener("keyup", (event) => {
 video.addEventListener('timeupdate', videoProgress)
 
 totalProgress.addEventListener('click', coordToTime)
+
+// skipForwardButton.addEventListener('click', (event) => {
+    
+//     console.dir(event.target);
+
+// })
+
+// skipButton.forEach(button => { button.addEventListener('click', (event) => {
+//     var amountTime = event.target.dataset.skip;
+//     console.log(video.currentTime);
+//     var currentTime = Math.floor(video.currentTime);
+//     resultTime = Math.floor(video.currentTime + amountTime);
+//     if (resultTime > video.duration) {
+//         video.currentTime = video.duration; 
+//     } else if (resultTime < 0) {
+//         video.currentTime = 0;
+//     } else {
+//         video.currentTime = resultTime;
+//     }
+// })
+// });
+
+skipButton.forEach(button => { button.addEventListener('click', (event) => {
+        var amountTime = event.target.dataset.skip;
+        console.log(video.currentTime);
+        var currentTime = parseFloat(video.currentTime);
+        resultTime = parseFloat(currentTime + amountTime) 
+        if (resultTime > video.duration) {
+            currentTime = video.duration; 
+        } else if (resultTime < 0) {
+            currentTime = 0;
+        } else {
+           currentTime = resultTime;
+        }
+    })
+    });
