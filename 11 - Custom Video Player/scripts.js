@@ -8,9 +8,9 @@
 button class="player__button toggle" title="Toggle Play"
 ✔︎pause button
 
-go forward 25s
+✔︎go forward 25s
 
-go back 10s
+✔︎go back 10s
 
 volume slider:
 input type="range" name="volume" class="player__slider" min="0" max="1" step="0.05" value="1
@@ -27,7 +27,12 @@ const totalProgress = document.querySelector('.progress')
 
 let skipButton = document.querySelectorAll('button[data-skip]');
 
-// let skipButton = document.querySelector('button');
+let sliders = document.querySelectorAll('input[class="player__slider"]');
+
+let sliderBar = document.querySelectorAll('.player__slider')
+
+
+ //let skipButton = document.querySelector('input[name="volume"]');
 
 
 //<button data-skip="25" class="player__button">25s »</button>
@@ -66,6 +71,18 @@ function coordToTime(event){
     console.log(curryTime + " I am curry time")
 }
 
+
+
+//slider function time ---THIS IS AWESOME!!!
+function handleSlide(){
+    video[`${this.name}`] = this.value;
+}
+
+function slideProgress(){
+    player__slider.style
+}
+
+
 /*Hook up the event listeners*/
 playButton.addEventListener('click', videoPlaying)
 playButton.addEventListener("keyup", (event) => {
@@ -79,6 +96,11 @@ totalProgress.addEventListener('click', coordToTime)
 
 skipButton.forEach(button => { button.addEventListener('click', (event) => {
         var skipAmount = parseFloat(event.target.dataset.skip);
+        console.log(skipAmount);
         video.currentTime = video.currentTime + skipAmount
     })
     });
+
+sliders.forEach(slider => {slider.addEventListener('change', handleSlide)})
+sliders.forEach(slider => {slider.addEventListener('mousemove', handleSlide)})
+sliders.forEach(slider => {slider.addEventListener('click', handleSlide)})
