@@ -81,7 +81,7 @@
       var units = this.dataset.sizing || '';
 
       document.documentElement.style.setProperty(`--${this.name}`, `${this.value}` + units);
-      
+      video[`${this.name}`] = this.value
     }
 
     inputList.forEach(input => input.addEventListener('change', handleEvent))

@@ -23,12 +23,78 @@
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
+    <button class="buttons" data-function="changeAll" id="taccol">Taco All</button>
+    <button class="buttons" data-function="dropAll" id="dropper">Drop Menu </button>
   </div>
 
 <script>
-  const addItems = document.querySelector('.add-items');
+  const addItems = document.querySelector('.add-items'); //type form
   const itemsList = document.querySelector('.plates');
-  const items = [];
+  const items = JSON.parse(localStorage.getItem('items')) || [];
+  const buttonTaco = document.querySelectorAll('.buttons');
+  const globalThis = this;
+  let checked = false;
+
+  function addFood(e){
+    e.preventDefault(); //form's default behavior is to reload
+    const text = (this.querySelector('[name=item]')).value;
+    const item = {
+      text,
+      done: false
+    };
+  items.push(item);
+  populatePlates(items, itemsList);
+  localStorage.setItem('items', JSON.stringify(items));
+  // document.querySelector('button[dropper]').innerHTML = 'Drop Menu'
+  this.reset();
+  }
+
+  function tacofy(e){
+    if(!e.target.matches('input')) return;
+    let index = e.target.dataset.index
+    items[index].done = !items[index].done
+    localStorage.setItem('items', JSON.stringify(items));
+    populatePlates(items, itemsList);
+  }
+
+  console.table(items)
+  console.log(itemsList)
+
+  //We need to convert each input into an inner html to add to our plate list. 
+  //Plate list is an unordered list, we will generate a <li> element for each input item
+  function populatePlates(plates=[], platesList){
+    platesList.innerHTML = plates.map((plate, i) => {
+      return `<li>
+        <input type ="checkbox" data-index=${i} id="item${i}" 
+        ${plate.done ? 'checked' : '' }/>
+        <label for="item${i}">${plate.text}</label>
+      </li>`
+    }).join('');
+  }
+  
+
+  function changeAll(e){
+    //checked ? e.target.innerHTML = 'Reset All' : e.target.innerHTML = 'Taco All'
+    checked = !checked;
+    items.forEach( elem => elem.done = checked )
+    localStorage.setItem('items', JSON.stringify(items));
+    populatePlates(items, itemsList);
+    !checked ? e.target.innerHTML = 'Taco All' : e.target.innerHTML = 'Reset All'
+  }
+
+  function dropAll(e){
+    localStorage.clear();
+    populatePlates([], itemsList);
+  }
+
+  addItems.addEventListener('submit', addFood)
+  itemsList.addEventListener('click', tacofy)
+  buttonTaco.forEach(button=> button.addEventListener('click', (e) => {
+    window[e.target.dataset.function](e);
+  }));
+  
+
+  populatePlates(items, itemsList);
 
 </script>
 
