@@ -48,6 +48,17 @@
 <script>
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+function clean(elem){
+  return elem.replace(/^(the |a |an )/i, 'hello').trim()
+}
+const cleanBands = bands.sort((a, b) =>  clean(a) < clean(b) ? -1 : 1)
+
+document.querySelector('#bands').innerHTML = cleanBands.map(band => 
+`<li>${band}</li>`
+).join('')
+
+
+
 
 </script>
 

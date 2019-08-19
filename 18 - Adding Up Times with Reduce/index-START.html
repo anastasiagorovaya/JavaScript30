@@ -181,7 +181,28 @@
       Video 58
     </li>
   </ul>
+<script src="TimeMath.js" charset="utf-8"></script>
 <script>
+  /*
+  - get array of all times
+  - extract minutes and seconds from each elem
+  - convert all minutes to seconds
+  - add all
+  - convert hours minutes and seconds
+  */
+  let timesArray = Array.from(document.querySelectorAll('[data-time]'));
+
+  let timesArrayExtractData = timesArray.map(extractData);
+  
+  let getSecondsArr = timesArrayExtractData.map(getSeconds).map(parseFloat)
+  let getMinutesArr = timesArrayExtractData.map(getMinutes).map(parseFloat)
+
+  let allToSecondsArray = getSecondsArr.concat(getMinutesArr.map(minute => minute * 60))
+
+  let totalSeconds = allToSecondsArray.reduce((total, elem) => total + elem)
+
+  console.log(secondsToHms(totalSeconds))
+  
 </script>
 </body>
 </html>
