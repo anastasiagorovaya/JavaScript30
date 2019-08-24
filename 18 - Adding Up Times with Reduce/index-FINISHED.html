@@ -185,14 +185,21 @@
 
   const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
 
+// getTimeValues
   const seconds = timeNodes
     .map(node => node.dataset.time)
+
+
+// convertAllValuesToSeconds
     .map(timeCode => {
       const [mins, secs] = timeCode.split(':').map(parseFloat);
       return (mins * 60) + secs;
     })
+
+// getTotalTimeInSeconds
     .reduce((total, vidSeconds) => total + vidSeconds);
 
+// displayFormatterTotalTime
     let secondsLeft = seconds;
     const hours = Math.floor(secondsLeft / 3600);
     secondsLeft = secondsLeft % 3600;
@@ -205,3 +212,11 @@
 </script>
 </body>
 </html>
+
+
+
+
+getTimeValues
+convertAllValuesToSeconds
+getTotalTimeInSeconds
+displayFormattedTotalTime

@@ -195,6 +195,8 @@
   let timesArrayExtractData = timesArray.map(extractData);
   
   let getSecondsArr = timesArrayExtractData.map(getSeconds).map(parseFloat)
+  
+
   let getMinutesArr = timesArrayExtractData.map(getMinutes).map(parseFloat)
 
   let allToSecondsArray = getSecondsArr.concat(getMinutesArr.map(minute => minute * 60))
