@@ -51,13 +51,15 @@
     // console.log(this);
   }
 
-  divs.forEach(div => div.addEventListener('click', logText, {
-    capture: false,
-    once: true
-  }));
+  divs.forEach(div => div.addEventListener('click', logText, 
+  // {
+  //   capture: true,
+  //   once: false
+  // }
+  ));
 
   button.addEventListener('click', () => {
-    console.log('Click!!!');
+    console.log('Button!!!!');
   }, {
     once: true
   });
