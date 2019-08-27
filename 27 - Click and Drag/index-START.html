@@ -35,6 +35,40 @@
   </div>
 
 <script>
+
+  const cards = document.querySelector('.items');
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  cards.addEventListener('mousedown', (e)=>{
+    isDown = true;
+    cards.classList.add('active')
+    startX = e.pageX - cards.offsetLeft;
+    scrollLeft = cards.scrollLeft; //find out!
+    console.log(e)
+  })
+  cards.addEventListener('mouseleave', ()=>{
+    isDown = false;
+    cards.classList.remove('active')
+
+  })
+  cards.addEventListener('mouseup',()=>{
+    isDown = false;
+    cards.classList.remove('active')
+
+  })
+  cards.addEventListener('mousemove',(e)=>{
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - cards.offsetLeft;
+    const walk = (x - startX)*3;
+    cards.scrollLeft = scrollLeft - walk;
+    console.log(walk)
+
+  })
+
+
 </script>
 
   </body>
